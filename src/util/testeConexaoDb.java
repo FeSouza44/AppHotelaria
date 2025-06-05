@@ -6,8 +6,12 @@ driver JDBC para MYSQL
 */
 
 
+import dao.AdicionaisDAO;
+import dao.ClienteDAO;
+import dao.QuartoDAO;
+import dao.UsuarioDAO;
+
 import java.sql.Connection;
-import java.sql.SQLException;
 
 public class testeConexaoDb {
     public static void main(String[] args) {
@@ -17,6 +21,17 @@ public class testeConexaoDb {
         if (condb != null) {
             System.out.println("Conexão estabelecida com sucesso!");
             try {
+//
+                QuartoDAO quartoDAO = new QuartoDAO();
+                quartoDAO.inserirQuarto();
+                UsuarioDAO usuarioDAO = new UsuarioDAO();
+                usuarioDAO.inserirUsuario();
+                ClienteDAO clienteDAO = new ClienteDAO();
+                clienteDAO.inserirCliente();
+                AdicionaisDAO adicionaisDAO = new AdicionaisDAO();
+                adicionaisDAO.inserirAdicionais();
+
+                System.out.println("Inserido com sucesso!");
                 condb.close();
                 System.out.println("Conexão Encerrada");
             } catch(Exception e) {

@@ -1,13 +1,13 @@
 package model;
 
-public class Pessoa {
+public class Pessoas {
     /*Declaração de variáveis com
     modificador de acesso e tipagem*/
     private String nome, email;
 
     /*Construtor: inicializa a classe
     quando um objeto é criado*/
-    public Pessoa(String nome, String email) {
+    public Pessoas(String nome, String email) {
         this.nome = nome;
         this.email = email;
     }

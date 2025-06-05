@@ -1,8 +1,8 @@
 package model;
-public class Usuario extends Pessoa {
+public class Usuarios extends Pessoas {
 private int id, role_id;
 private String senha;
-    public Usuario(String nome, String email, String senha, int role_id) {
+    public Usuarios(String nome, String email, String senha, int role_id) {
         super(nome, email);
         this.senha = senha;
         this.role_id = role_id;

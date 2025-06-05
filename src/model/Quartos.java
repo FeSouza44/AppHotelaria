@@ -1,12 +1,12 @@
 package model;
 
-public class Quarto {
+public class Quartos {
     private int id, qtd_cama_casal, qtd_cama_solteiro;
     private String nome, numero;
     private double preco;
     private Boolean disponivel;
 
-    public Quarto(int qtd_cama_casal, int qtd_cama_solteiro, String nome, String numero, double preco, Boolean disponivel) {
+    public Quartos(int qtd_cama_casal, int qtd_cama_solteiro, String nome, String numero, double preco, Boolean disponivel) {
         this.qtd_cama_casal = qtd_cama_casal;
         this.qtd_cama_solteiro = qtd_cama_solteiro;
         this.nome = nome;

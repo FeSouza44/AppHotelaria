@@ -1,12 +1,12 @@
 package model;
 
-public class Cliente extends Pessoa {
+public class Clientes extends Pessoas {
 
 //Declaração de uma variável própria da classe Cliente
 private int id;
 private String cpf, telefone;
 
-    public Cliente(String nome, String email, String cpf, String telefone) {
+    public Clientes(String nome, String email, String cpf, String telefone) {
         super(nome, email);
         this.cpf = cpf;
         this.telefone = telefone;
