@@ -21,12 +21,41 @@ public class ClienteDAO {
                 novoCliente.setString(4,"feamaral.comercial@gmail.com");
 
                 int linhaAfetada = novoCliente.executeUpdate();
+                condb.close();
                 return linhaAfetada > 0;
             } catch (Exception erro) {
                 System.out.println("Erro ao inserir Cliente: " + erro);
                 return false;
             }
         }
+        public boolean deleteCliente(){
+            try {
+                Connection condb = conexao.conectar();
+                PreparedStatement removeCliente = condb.prepareStatement("DELETE from clientes WHERE ID = ?;");
+                removeCliente.setInt(1, 1);
+                int linhaAfetada = removeCliente.executeUpdate();
+                condb.close();
+                return linhaAfetada > 0;
+            }catch (Exception erro) {
+                System.out.println("Erro ao deletar Cliente: " + erro);
+            }
+            return false;
+}
+public boolean alterarCliente(){
+        try {
+            Connection condb = conexao.conectar();
+            PreparedStatement altCliente = condb.prepareStatement("UPDATE clientes"+"SET nome = ?, cpf = ?, telefone = ?, email = ?");
+            altCliente.setString(1, "Felipe");
+            altCliente.setString(2,"123123131");
+            altCliente.setString(3,"123125125");
+            altCliente.setString(4,"@gmail.com");
 
-
+            int linhaAfetada = altCliente.executeUpdate();
+            condb.close();
+            return linhaAfetada > 0;
+        } catch (Exception e) {
+            System.out.println("Erro ao alterar Cliente: " + e);
+            return false;
+        }
+}
 }

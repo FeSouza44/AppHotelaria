@@ -21,9 +21,42 @@ public class UsuarioDAO {
             novoUsuario.setInt(4, 1);
             
             int linhaAfetada = novoUsuario.executeUpdate();
+            condb.close();
             return linhaAfetada > 0;
         } catch (Exception erro) {
             System.out.println("Erro ao inserir usuario: " + erro);
+            return false;
+        }
+    }
+    public boolean deletarUsuario(){
+        try {
+            Connection condb = conexao.conectar();
+            PreparedStatement removeUsuario = condb.prepareStatement("DELETE FROM usuarios where id = ?;");
+            removeUsuario.setInt(1,1);
+            int linhaAfetada = removeUsuario.executeUpdate();;
+            condb.close();
+            return linhaAfetada > 0;
+        } catch (Exception erro) {
+            System.out.println("Erro ao deletar usuario: " + erro);
+            return false;
+        }
+
+
+    }
+    public boolean alterarUsuario(){
+        try {
+            Connection condb = conexao.conectar();
+            PreparedStatement altUsuario = condb.prepareStatement("UPDATE usuarios"+"SET nome = ?, email = ?, senha = (md5)?, cargo id = ?");
+            altUsuario.setString(1, "asdaa");
+            altUsuario.setString(2,"asdasdad");
+            altUsuario.setString(3,"sdasdasda");
+            altUsuario.setInt(4, 1);
+
+            int linhaAlterada  = altUsuario.executeUpdate();
+            condb.close();
+            return linhaAlterada > 0;
+        } catch (Exception e) {
+            System.out.println("Erro ao alterar usuario: " + e);
             return false;
         }
     }
