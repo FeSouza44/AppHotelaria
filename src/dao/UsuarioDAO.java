@@ -4,6 +4,7 @@ import util.Conexao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class UsuarioDAO {
     //Objeto para instanciar classe Conexao para requisiar acesso ao DB
@@ -58,6 +59,24 @@ public class UsuarioDAO {
         } catch (Exception e) {
             System.out.println("Erro ao alterar usuario: " + e);
             return false;
+        }
+    }
+
+    public void pesquisarUsuario(){
+        try {
+            Connection condb = conexao.conectar();
+            PreparedStatement buscaUsuario = condb.prepareStatement("SELECT nome, email" + "FROM usuarios where cargo_id = ?");
+            buscaUsuario.setInt(1,1);
+            ResultSet resultSet =buscaUsuario.executeQuery();
+
+            while (resultSet.next()){
+                String nome = resultSet.getString("nome: ");
+                String email = resultSet.getString("email: ");
+                System.out.println("Nome: "+nome + "Email: " + email);
+            }
+            condb.close();
+        } catch (Exception erro) {
+            System.out.println("Erro ao pesquisar usuario: " + erro);
         }
     }
 }

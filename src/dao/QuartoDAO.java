@@ -3,6 +3,7 @@ import util.Conexao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class QuartoDAO {
@@ -62,7 +63,27 @@ public class QuartoDAO {
         }
         return false;
     }
+    public void pesquisarQuarto(){
+        try {
+            Connection condb = conexao.conectar();
+            PreparedStatement buscaQuarto = condb.prepareStatement("SELECT *" + "FROM quartos where id = ?");
+            buscaQuarto.setInt(1,1);
+            ResultSet resultSet = buscaQuarto.executeQuery();
 
+            while (resultSet.next()){
+                String nome = resultSet.getString("Nome: ");
+                String num = resultSet.getString("Número: ");
+                String camasCasal = resultSet.getString("Camas Casal: ");
+                String camasSolt = resultSet.getString("Camas Solteiro: ");
+                String preco = resultSet.getString("Preco: ");
+                String disponivel = resultSet.getString("Disponivel: ");
+                System.out.println("Nome: "+nome + "Número: " + num + "Camas Casal: " + camasCasal+ "Camas Solteiro"+camasSolt + "Preco: " + preco + "Disponivel: " + disponivel );
+            }
+            condb.close();
+        } catch (Exception erro) {
+            System.out.println("Erro ao pesquisar quarto: " + erro);
+        }
+    }
 
 }
 

@@ -4,6 +4,7 @@ import util.Conexao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PedidosDAO {
@@ -49,5 +50,23 @@ public class PedidosDAO {
             System.out.println("Erro ao alterar pedidos" + e);
         }
         return false;
+    }
+    public void pesquisarPedido(){
+        try {
+            Connection condb = conexao.conectar();
+            PreparedStatement buscaPedido = condb.prepareStatement("SELECT *" + "FROM clientes where id = ?");
+            buscaPedido.setInt(1,1);
+            ResultSet resultSet = buscaPedido.executeQuery();
+
+            while (resultSet.next()){
+                String nome = resultSet.getString("Vendedor: ");
+                String email = resultSet.getString("Cliente: ");
+                String data = resultSet.getString("Data: ");
+                System.out.println("Nome: "+nome + "Email: " + email);
+            }
+            condb.close();
+        } catch (Exception erro) {
+            System.out.println("Erro ao pesquisar pedido: " + erro);
+        }
     }
 }

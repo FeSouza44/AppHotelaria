@@ -4,6 +4,7 @@ import util.Conexao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class ClienteDAO {
         //Objeto para instanciar classe Conexao para requisiar acesso ao DB
@@ -58,4 +59,22 @@ public boolean alterarCliente(){
             return false;
         }
 }
+    public void pesquisarCliente(){
+        try {
+            Connection condb = conexao.conectar();
+            PreparedStatement buscaCliente = condb.prepareStatement("SELECT nome, email" + "FROM clientes where id = ?");
+            buscaCliente.setInt(1,1);
+            ResultSet resultSet =buscaCliente.executeQuery();
+
+            while (resultSet.next()){
+                String nome = resultSet.getString("nome: ");
+                String email = resultSet.getString("email: ");
+                System.out.println("Nome: "+nome + "Email: " + email);
+            }
+            condb.close();
+        } catch (Exception erro) {
+            System.out.println("Erro ao pesquisar cliente: " + erro);
+        }
+    }
+
 }
