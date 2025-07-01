@@ -54,15 +54,15 @@ public class PedidosDAO {
     public void pesquisarPedido(){
         try {
             Connection condb = conexao.conectar();
-            PreparedStatement buscaPedido = condb.prepareStatement("SELECT *" + "FROM clientes where id = ?");
+            PreparedStatement buscaPedido = condb.prepareStatement("SELECT *" + "FROM pedidos where id = ?");
             buscaPedido.setInt(1,1);
             ResultSet resultSet = buscaPedido.executeQuery();
-
+ 
             while (resultSet.next()){
-                String nome = resultSet.getString("Vendedor: ");
-                String email = resultSet.getString("Cliente: ");
-                String data = resultSet.getString("Data: ");
-                System.out.println("Nome: "+nome + "Email: " + email);
+                String usuarioId = resultSet.getString("usuario_id");
+                String vendedorId = resultSet.getString("vendedor_id");
+                String data = resultSet.getString("data");
+                System.out.println("Usuário_ID: " +usuarioId + " Vendedor_ID: " + vendedorId + " Data: " + data);
             }
             condb.close();
         } catch (Exception erro) {

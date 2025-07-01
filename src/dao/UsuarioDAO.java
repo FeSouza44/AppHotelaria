@@ -1,5 +1,6 @@
 package dao;
 
+import model.Usuarios;
 import util.Conexao;
 
 import java.sql.Connection;
@@ -78,5 +79,26 @@ public class UsuarioDAO {
         } catch (Exception erro) {
             System.out.println("Erro ao pesquisar usuario: " + erro);
         }
+    }
+    public boolean autenticarUsuario(Usuarios usuario){
+        try {
+            Connection condb = conexao.conectar();
+            PreparedStatement stmtautenticarUsuario = condb.prepareStatement("SELECT nome from usuarios WHERE email = ? AND senha = ?");
+            stmtautenticarUsuario.setString(1, usuario.getEmail());
+            stmtautenticarUsuario.setString(2, usuario.getSenha());
+
+            ResultSet resultado = stmtautenticarUsuario.executeQuery();
+            boolean acessoAutorizado = resultado.next();
+
+                String nome = resultado.getString("nome");
+
+            System.out.println("Olá, seja bem vindo, " + nome);
+            condb.close();
+            return acessoAutorizado;
+
+        } catch (Exception erro) {
+            System.out.println("Erro ao autenticar usuario: " + erro);
+        }
+        return false;
     }
 }

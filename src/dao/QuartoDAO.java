@@ -71,8 +71,8 @@ public class QuartoDAO {
             ResultSet resultSet = buscaQuarto.executeQuery();
 
             while (resultSet.next()){
-                String nome = resultSet.getString("Nome: ");
-                String num = resultSet.getString("Número: ");
+                String nome = resultSet.getString("nome: ");
+                String num = resultSet.getString("número: ");
                 String camasCasal = resultSet.getString("Camas Casal: ");
                 String camasSolt = resultSet.getString("Camas Solteiro: ");
                 String preco = resultSet.getString("Preco: ");

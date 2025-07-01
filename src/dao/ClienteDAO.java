@@ -62,14 +62,14 @@ public boolean alterarCliente(){
     public void pesquisarCliente(){
         try {
             Connection condb = conexao.conectar();
-            PreparedStatement buscaCliente = condb.prepareStatement("SELECT nome, email" + "FROM clientes where id = ?");
+            PreparedStatement buscaCliente = condb.prepareStatement("SELECT nome, email FROM clientes where id = ?");
             buscaCliente.setInt(1,1);
             ResultSet resultSet =buscaCliente.executeQuery();
 
-            while (resultSet.next()){
-                String nome = resultSet.getString("nome: ");
-                String email = resultSet.getString("email: ");
-                System.out.println("Nome: "+nome + "Email: " + email);
+                while (resultSet.next()){
+                    String nome = resultSet.getString("nome");
+                    String email = resultSet.getString("email");
+                System.out.println("Nome: "+nome + "\n Email: " + email);
             }
             condb.close();
         } catch (Exception erro) {

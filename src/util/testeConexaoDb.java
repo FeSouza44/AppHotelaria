@@ -6,10 +6,12 @@ driver JDBC para MYSQL
 */
 
 
+import controller.UsuariosController;
 import dao.AdicionaisDAO;
 import dao.ClienteDAO;
 import dao.QuartoDAO;
 import dao.UsuarioDAO;
+import model.Usuarios;
 
 import java.sql.Connection;
 
@@ -17,23 +19,13 @@ public class testeConexaoDb {
     public static void main(String[] args) {
         Conexao conexao = new Conexao();
         Connection condb = conexao.conectar();
-
+        UsuariosController userCtrl = new UsuariosController();
         if (condb != null) {
             System.out.println("Conexão estabelecida com sucesso!");
             try {
-//
-                QuartoDAO quartoDAO = new QuartoDAO();
-                quartoDAO.inserirQuarto();
-                UsuarioDAO usuarioDAO = new UsuarioDAO();
-                usuarioDAO.inserirUsuario();
-                ClienteDAO clienteDAO = new ClienteDAO();
-                clienteDAO.inserirCliente();
-                AdicionaisDAO adicionaisDAO = new AdicionaisDAO();
-                adicionaisDAO.inserirAdicionais();
-
-                System.out.println("Inserido com sucesso!");
+        userCtrl.autenticarUsuario("felipe@gmail.com","1234");
                 condb.close();
-                System.out.println("Conexão Encerrada");
+
             } catch(Exception e) {
                 System.out.println("Erro ao Encerrar Banco de Dados: " + e.getMessage());
             }
